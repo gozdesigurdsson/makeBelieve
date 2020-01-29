@@ -13,12 +13,30 @@
 
     MakeBelieveElement.prototype.getTagNames = function() {
         var tagNames = [];
-        for (var i= 0; i < this.nodes.length; i++){
+        for (var i= 0; i < this.nodes.length; i++) {
             var currentElement = this.nodes[i];
             tagNames.push(currentElement.tagName.toLowerCase());
         }
         return tagNames;
-    }
+    };
+
+    MakeBelieveElement.prototype.parent = function(element) {
+        var parents = [];
+        // element is defined
+        if (element) {
+            for (var i = 0; i < this.nodes.length; i++) {
+                if (this.nodes[i].parentNode.matches(element)) {
+                    parents.push(this.nodes[i].parentNode)
+                }
+            }
+        }
+        else { 
+            for (var i = 0; i < this.nodes.length; i++) {
+                parents.push(this.nodes[i].parentNode)
+            }
+        }
+        return parents;
+    };
 
     function query(cssSelector) {
         return new MakeBelieveElement(document.querySelectorAll(cssSelector));
@@ -38,4 +56,13 @@ console.log(paragraphs.getLength());
 console.log(divs.getLength());
 console.log(paragraphs.getTagNames());
 console.log(divs.getTagNames());
+
+var parent = __('#password').parent();
+var formParent = __('#password').parent('form');
+var paragraphsParent = paragraphs.parent();
+console.log(parent);
+console.log(formParent);
+console.log(paragraphsParent);
+
+
 

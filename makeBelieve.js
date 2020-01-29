@@ -95,6 +95,14 @@
         this.nodes[0].prepend(newElem)
     }
 
+    MakeBelieveElement.prototype.delete = function(){
+        for (var i = 0; i < this.nodes.length; i++){
+            this.nodes[i].remove()
+        }
+        
+    }
+
+
     function query(cssSelector) {
         return new MakeBelieveElement(document.querySelectorAll(cssSelector));
     };
@@ -137,10 +145,14 @@ __('.parent').insertText('hallo');
 __('.the-prepender').prepend('<p>I am an prepended paragraph</p>')
 __('.the-prepender').prepend('<p>again</p>')
 __('.the-prepender').prepend('<h2>again</h2>')
+__('.the-prepender').prepend('<h2></h2>')
 __('.the-prepender').prepend(document.createElement('p')
             .appendChild(
                 document.createTextNode('bla')
                 ))
+__('.some-div h2').delete()
+
+
 console.log(document)
 
 

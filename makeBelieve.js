@@ -23,19 +23,50 @@
     MakeBelieveElement.prototype.parent = function(element) {
         var parents = [];
         // element is defined
-        if (element) {
-            for (var i = 0; i < this.nodes.length; i++) {
+        for (var i = 0; i < this.nodes.length; i++) {
+            if (element){
                 if (this.nodes[i].parentNode.matches(element)) {
                     parents.push(this.nodes[i].parentNode)
                 }
-            }
-        }
-        else { 
-            for (var i = 0; i < this.nodes.length; i++) {
+            }   
+            else { 
                 parents.push(this.nodes[i].parentNode)
             }
         }
         return parents;
+    };
+
+    MakeBelieveElement.prototype.grandParent = function(element) {
+        var grandParents = [];
+        // element is defined
+        for (var i = 0; i < this.nodes.length; i++) {
+            if (element){
+                if (this.nodes[i].parentNode.parentNode.matches(element)) {
+                    grandParents.push(this.nodes[i].parentNode.parentNode)
+                }
+            }   
+            else { 
+                grandParents.push(this.nodes[i].parentNode.parentNode)
+            }
+        }
+        return grandParents;
+    };
+
+
+    MakeBelieveElement.prototype.ancestor = function(element) {
+        var ancestor = [];
+        // element is defined
+        for (var i = 0; i < this.nodes.length; i++) {
+            if (element){
+                if (this.nodes[i].parentNode.parentNode.parentNode.matches(element)) {
+                    ancestor.push(this.nodes[i].parentNode.parentNode.parentNode)
+                }
+            }   
+            else { 
+                ancestor.push(this.nodes[i].parentNode.parentNode.parentNode)
+            }
+        }
+        return ancestor;
     };
 
     function query(cssSelector) {
@@ -60,9 +91,15 @@ console.log(divs.getTagNames());
 var parent = __('#password').parent();
 var formParent = __('#password').parent('form');
 var paragraphsParent = paragraphs.parent();
+var paragraphsGrandParent = paragraphs.grandParent();
+var paragraphsAncestor = paragraphs.ancestor('.ancestor');
 console.log(parent);
 console.log(formParent);
 console.log(paragraphsParent);
+console.log(paragraphsGrandParent);
+console.log(paragraphsAncestor);
+
+
 
 
 

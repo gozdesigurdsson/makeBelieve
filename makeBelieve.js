@@ -99,7 +99,6 @@
         for (var i = 0; i < this.nodes.length; i++){
             this.nodes[i].remove()
         }
-        
     }
 
 

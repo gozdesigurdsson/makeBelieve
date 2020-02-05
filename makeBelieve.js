@@ -20,9 +20,10 @@
         return tagNames;
     };
 
+    // 4 //
     MakeBelieveElement.prototype.parent = function(element) {
         var parents = [];
-        // element is defined
+
         for (var i = 0; i < this.nodes.length; i++) {
             if (element){
                 if (this.nodes[i].parentNode.matches(element)) {
@@ -36,9 +37,10 @@
         return parents;
     };
 
+    // 5 //
     MakeBelieveElement.prototype.grandParent = function(element) {
         var grandParents = [];
-        // element is defined
+        
         for (var i = 0; i < this.nodes.length; i++) {
             if (element){
                 if (this.nodes[i].parentNode.parentNode.matches(element)) {
@@ -52,10 +54,10 @@
         return grandParents;
     };
 
-
+    // 6 //
     MakeBelieveElement.prototype.ancestor = function(element) {
         var ancestor = [];
-        // element is defined
+        
         for (var i = 0; i < this.nodes.length; i++) {
             if (element){
                 if (this.nodes[i].parentNode.parentNode.parentNode.matches(element)) {
@@ -69,12 +71,14 @@
         return ancestor;
     };
 
+    // 7 //
     MakeBelieveElement.prototype.onClick = function(evt){
         for (var i = 0; i < this.nodes.length; i++){
             this.nodes[i].addEventListener("click", evt)
         }
     }
 
+    // 8 //
     MakeBelieveElement.prototype.insertText = function(text){
         for (var i = 0; i < this.nodes.length; i++){
             this.nodes[i].innerHTML = text
@@ -82,6 +86,21 @@
         }
     }
 
+    // 9 //
+    MakeBelieveElement.prototype.append = function(elem){
+        var newElem;
+        if (typeof elem == "string"){
+            var elemType = elem.match(/<(.*?)>/)[0];
+            var stripedHtml = elem.replace(/<[^>]+>/g, '');
+            newElem = document.createElement(elemType[1]);
+            newElem.append(document.createTextNode(stripedHtml));
+        } else{
+            newElem = elem.parentNode
+        }
+        this.nodes[0].append(newElem)
+    }
+
+    // 10 //
     MakeBelieveElement.prototype.prepend = function(elem){
         var newElem;
         if (typeof elem == "string"){
@@ -95,6 +114,7 @@
         this.nodes[0].prepend(newElem)
     }
 
+    // 11 //
     MakeBelieveElement.prototype.delete = function(){
         for (var i = 0; i < this.nodes.length; i++){
             this.nodes[i].remove()
@@ -149,10 +169,15 @@ __('.the-prepender').prepend(document.createElement('p')
             .appendChild(
                 document.createTextNode('bla')
                 ))
+__('.the-appender').append('<p>I am an appended paragraph!</p>')
+__('.the-appender').append(
+    document.createElement('p')
+        .appendChild(
+            document.createTextNode('I am an appended paragraph!')
+        )
+)
 __('.some-div h2').delete()
 
-
-console.log(document)
 
 
 

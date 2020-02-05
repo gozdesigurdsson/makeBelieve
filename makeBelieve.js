@@ -1,6 +1,6 @@
 (function (global0bj) {
     // Setup MakeBelieveJS
-
+    
     // MakeBelieveElement constructor function  
     function MakeBelieveElement(nodes) {
         // this means this instance of MakeBelieveElement
@@ -108,7 +108,6 @@
         for (let i=0; i< toggledClasses.length; i++){
             if (!(toggledClasses[i] == c)){
                 this.nodes[0].classList.add(toggledClasses[i])
-                
             } else{
                 found = true
             }
@@ -195,4 +194,5 @@ __('.some-div h2').delete()
 
 console.log(document)
 console.log(__('.some-div').toggleClass('other-class'))
-console.log(__('.some-div').toggleClass('new-class'))
+console.log(__('#something'));
+

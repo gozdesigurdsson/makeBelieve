@@ -120,7 +120,24 @@
             this.nodes[i].remove()
         }
     }
-
+    
+    MakeBelieveElement.prototype.toggleClass = function(c){
+        var toggledClasses = this.nodes[0].classList.value.split(' ')
+        this.nodes[0].classList.value = ''
+        var found = false
+        for (let i=0; i< toggledClasses.length; i++){
+            if (!(toggledClasses[i] == c)){
+                this.nodes[0].classList.add(toggledClasses[i])
+                
+            } else{
+                found = true
+            }
+        }
+        if (found == false){
+            this.nodes[0].classList.add(c)
+        }
+        return this.nodes[0]
+    }
 
     function query(cssSelector) {
         return new MakeBelieveElement(document.querySelectorAll(cssSelector));
@@ -143,8 +160,6 @@ var formParent = __('#password').parent('form');
 var paragraphsParent = paragraphs.parent();
 var paragraphsGrandParent = paragraphs.grandParent();
 var paragraphsAncestor = paragraphs.ancestor('.ancestor');
-
-
 console.log(paragraphs.getLength());
 console.log(divs.getLength());
 console.log(paragraphs.getTagNames());
@@ -154,6 +169,9 @@ console.log(formParent);
 console.log(paragraphsParent);
 console.log(paragraphsGrandParent);
 console.log(paragraphsAncestor);
+
+
+
 console.log(__('#paragraph-1').ancestor('.ancestor'))
 __('.top').onClick(function(evt){
     console.log(evt)
@@ -179,5 +197,12 @@ __('.the-appender').append(
 __('.some-div h2').delete()
 
 
+<<<<<<< HEAD
+=======
+console.log(document)
+console.log(__('.some-div').toggleClass('other-class'))
+console.log(__('.some-div').toggleClass('new-class'))
+
+>>>>>>> 09bb5c7a909bbfea03541bdfb5a20db3456bc1e3
 
 

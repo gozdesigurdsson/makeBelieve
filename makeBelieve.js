@@ -55,20 +55,25 @@
     };
 
     // 6 //
-    MakeBelieveElement.prototype.ancestor = function(element) {
-        var ancestor = [];
-        
-        for (var i = 0; i < this.nodes.length; i++) {
-            if (element){
-                if (this.nodes[i].parentNode.parentNode.parentNode.matches(element)) {
-                    ancestor.push(this.nodes[i].parentNode.parentNode.parentNode)
+    MakeBelieveElement.prototype.ancestor = function (selector) {
+        var findSelector = document.querySelector(selector)
+        var parentItem
+        var ancestor
+        for (let item of this.nodes) {
+            parentItem = item.parentElement
+            while (parentItem !== null) {
+                if (parentItem == findSelector) {
+                    ancestor = parentItem
                 }
-            }   
-            else { 
-                ancestor.push(this.nodes[i].parentNode.parentNode.parentNode)
+                if (parentItem.parentElement === null) {
+                    parentItem = null;
+                }
+                else {
+                    parentItem = parentItem.parentElement
+                }
             }
         }
-        return ancestor;
+        return ancestor
     };
 
     // 7 //
@@ -154,23 +159,30 @@
 var paragraphs = __('p');
 var divs = __('.item');
 
-
+console.log("length")
+console.log(paragraphs.getLength());
+console.log(divs.getLength());
 
 var parent = __('#password').parent();
 var formParent = __('#password').parent('form');
+console.log("parents")
+console.log(parent);
+console.log(formParent);
+
 var paragraphsParent = paragraphs.parent();
 var paragraphsGrandParent = paragraphs.grandParent();
 var paragraphsAncestor = paragraphs.ancestor('.ancestor');
-console.log(paragraphs.getLength());
-console.log(divs.getLength());
-console.log(paragraphs.getTagNames());
-console.log(divs.getTagNames());
-console.log(parent);
-console.log(formParent);
+console.log("parents of p");
 console.log(paragraphsParent);
+console.log("grandparent of p")
 console.log(paragraphsGrandParent);
+console.log("ancestor of p")
 console.log(paragraphsAncestor);
 
+console.log("paragraph tagnames")
+console.log(paragraphs.getTagNames());
+console.log("div tagnames")
+console.log(divs.getTagNames());
 
 
 console.log(__('#paragraph-1').ancestor('.ancestor'))
@@ -198,7 +210,7 @@ __('.the-appender').append(
 __('.some-div h2').delete()
 
 
-console.log(document)
+// console.log(document)
 console.log(__('.some-div').toggleClass('other-class'))
 console.log(__('.some-div').toggleClass('new-class'))
 

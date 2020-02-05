@@ -121,6 +121,7 @@
         }
     }
     
+    // 14 //
     MakeBelieveElement.prototype.toggleClass = function(c){
         var toggledClasses = this.nodes[0].classList.value.split(' ')
         this.nodes[0].classList.value = ''
@@ -197,12 +198,9 @@ __('.the-appender').append(
 __('.some-div h2').delete()
 
 
-<<<<<<< HEAD
-=======
 console.log(document)
 console.log(__('.some-div').toggleClass('other-class'))
 console.log(__('.some-div').toggleClass('new-class'))
 
->>>>>>> 09bb5c7a909bbfea03541bdfb5a20db3456bc1e3
 
 

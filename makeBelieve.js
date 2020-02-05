@@ -119,6 +119,21 @@
         return this.nodes[0]
     }
 
+    MakeBelieveElement.prototype.onSubmit = function (evt){
+        console.log(this.nodes[0])
+        this.nodes[0].addEventListener("submit", evt)
+
+
+    }
+    MakeBelieveElement.prototype.onInput = function (evt){
+        for (var i = 0; i < this.nodes.length; i++){
+            this.nodes[i].addEventListener("input", evt)
+        }
+        console.log(evt.data)
+
+    }
+
+
     function query(cssSelector) {
         return new MakeBelieveElement(document.querySelectorAll(cssSelector));
     };
@@ -140,6 +155,14 @@ var formParent = __('#password').parent('form');
 var paragraphsParent = paragraphs.parent();
 var paragraphsGrandParent = paragraphs.grandParent();
 var paragraphsAncestor = paragraphs.ancestor('.ancestor');
+var onInput = __('#my-form').onInput(function(evt){
+    evt.preventDefault();
+    console.log(evt.target.value)
+});
+var onSubmit = __('#my-form').onSubmit(function(evt){
+    evt.preventDefault();
+    console.log('username:', evt.target.username.value, ' ', 'password:', evt.target.password.value)
+});
 console.log(paragraphs.getLength());
 console.log(divs.getLength());
 console.log(paragraphs.getTagNames());
@@ -173,6 +196,3 @@ __('.some-div h2').delete()
 console.log(document)
 console.log(__('.some-div').toggleClass('other-class'))
 console.log(__('.some-div').toggleClass('new-class'))
-
-
-

@@ -125,6 +125,21 @@
             this.nodes[i].remove()
         }
     }
+
+    // 12 //
+
+    
+
+
+    // 13 // 
+    MakeBelieveElement.prototype.css = function( nafn, nytt ){
+        
+        for ( var i = 0; i < this.nodes.length; i++ ) {
+            this.nodes[i].style = nafn + ': ' + nytt +';';
+        }
+        
+        return this
+    }
     
     // 14 //
     MakeBelieveElement.prototype.toggleClass = function(c){
@@ -208,6 +223,9 @@ __('.the-appender').append(
         )
 )
 __('.some-div h2').delete()
+
+// testing 13 //
+__('.the-prepender').css('background-color', 'green');
 
 
 // console.log(document)

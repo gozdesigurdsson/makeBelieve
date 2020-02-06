@@ -92,7 +92,8 @@
         } else{
             newElem = elem.parentNode
         }
-        this.nodes[0].prepend(newElem)
+        this.nodes[0].parentNode.insertBefore(newElem, this.nodes[0])
+        
     }
 
     MakeBelieveElement.prototype.delete = function(){

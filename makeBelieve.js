@@ -98,11 +98,11 @@
             var elemType = elem.match(/<(.*?)>/)[0];
             var stripedHtml = elem.replace(/<[^>]+>/g, '');
             newElem = document.createElement(elemType[1]);
-            newElem.append(document.createTextNode(stripedHtml));
+            newElem.appendChild(document.createTextNode(stripedHtml));
         } else{
             newElem = elem.parentNode
         }
-        this.nodes[0].append(newElem)
+        this.nodes[0].appendChild(newElem)
     }
 
     // 10 //

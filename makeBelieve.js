@@ -93,32 +93,53 @@
 
     // 9 //
     MakeBelieveElement.prototype.append = function(elem){
-        var newElem;
-        if (typeof elem == "string"){
-            var elemType = elem.match(/<(.*?)>/)[0];
-            var stripedHtml = elem.replace(/<[^>]+>/g, '');
-            newElem = document.createElement(elemType[1]);
-            newElem.appendChild(document.createTextNode(stripedHtml));
-        } else{
-            newElem = elem.parentNode
-        }
-        this.nodes[0].appendChild(newElem)
-    }
 
-    // 10 //
-    MakeBelieveElement.prototype.prepend = function(elem){
-        var newElem;
-        if (typeof elem == "string"){
-            var elemType = elem.match(/<(.*?)>/)[1];
-            var stripedHtml = elem.replace(/<[^>]+>/g, '');
-            newElem = document.createElement(elemType);
-            newElem.appendChild(document.createTextNode(stripedHtml));
-        } else{
-            newElem = elem.parentNode
+        if (typeof (elem) == "object") {
+            this.nodes[0].appendChild(elem.parentNode)
         }
-        this.nodes[0].parentNode.insertBefore(newElem, this.nodes[0])
+        else {
+            this.nodes[0].innerHTML = this.nodes[0].innerHTML + elem
+        }
+    };
+
+    // MakeBelieveElement.prototype.append = function(elem){
+    //     var newElem;
+    //     if (typeof elem == "string"){
+    //         var elemType = elem.match(/<(.*?)>/)[0];
+    //         var stripedHtml = elem.replace(/<[^>]+>/g, '');
+    //         newElem = document.createElement(elemType[1]);
+    //         newElem.appendChild(document.createTextNode(stripedHtml));
+    //     } else{
+    //         newElem = elem.parentNode
+    //     }
+    //     this.nodes[0].appendChild(newElem)
+    // }
+
+    10 //
+    MakeBelieveElement.prototype.prepend = function (elem){
+
+        if (typeof(elem) == "object") {
+            this.nodes[0].insertBefore(elem.parentNode, null)
+            // this.nodes[0].insertBefore(elem.parentNode, this.nodes[0].childNodes[0])
+        }
+        else {
+            this.nodes[0].innerHTML = elem + this.nodes[0].innerHTML
+        }
+    };
+    
+    // MakeBelieveElement.prototype.prepend = function(elem){
+    //     var newElem;
+    //     if (typeof elem == "string"){
+    //         var elemType = elem.match(/<(.*?)>/)[1];
+    //         var stripedHtml = elem.replace(/<[^>]+>/g, '');
+    //         newElem = document.createElement(elemType);
+    //         newElem.appendChild(document.createTextNode(stripedHtml));
+    //     } else{
+    //         newElem = elem.parentNode
+    //     }
+    //     this.nodes[0].parentNode.insertBefore(newElem, this.nodes[0])
         
-    }
+    // }
 
     // 11 //
     MakeBelieveElement.prototype.delete = function(){
@@ -212,18 +233,18 @@
         return this.nodes[0]
     }
 
+    // 15 //
     MakeBelieveElement.prototype.onSubmit = function (evt){
         console.log(this.nodes[0])
         this.nodes[0].addEventListener("submit", evt)
-
-
     }
+
+    // 16 //
     MakeBelieveElement.prototype.onInput = function (evt){
         for (var i = 0; i < this.nodes.length; i++){
             this.nodes[i].addEventListener("input", evt)
         }
         console.log(evt.data)
-
     }
 
 

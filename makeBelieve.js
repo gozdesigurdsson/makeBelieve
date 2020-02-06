@@ -127,8 +127,60 @@
     }
 
     // 12 //
+    MakeBelieveElement.prototype.ajax = function( configuration ) {
+        
+        var http_method = 'GET'; // Defaults to GET
+        
+        var XMLHrequest = new XMLHttpRequest();
 
-    
+        if ( configuration.http_method == true ) {
+            // console.log('IS TRUE');
+            http_method = configuration.http_method;
+        }
+
+        XMLHrequest.open( http_method, configuration.url );
+
+        //Hérna er configuration requestið okkar fyrir request.header
+        if ( configuration.headers == true ) {
+            
+            for (var i = 0; i < configuration.headers.lenght; i++ ) {
+
+                XMLHrequest.setRequestHeader( configuration.headers[i][0], configuration.headers[i][1] );
+            }
+        }
+
+        if ( configuration.data  == true ) {
+
+            XMLHrequest.send(configuration.data);
+        }
+
+        if ( configuration.timeout  == true) {
+
+            XMLHrequest.timeout = configuration.timeout;
+        } 
+        else { XMLHrequest.send(); }
+
+        XMLHrequest.onreadystatechange = function() {
+
+            if ( XMLHrequest.status == 200 && configuration.success && XMLHrequest.readyState == XMLHttpRequest.DONE ) {
+                //console.log('Status = 200');
+                configuration.success( XMLHrequest.response );
+            }
+
+            else if ( XMLHrequest.status != 200 && XMLHrequest.readyState == XMLHttpRequest.DONE && configuration.fail ) {
+                
+                configuration.fail( XMLHrequest.response );
+            }
+
+            else if( XMLHrequest.readyState == XMLHttpRequest.HEADERS_RECEIVED && configuration.beforeSend ) {
+                
+                configuration.beforeSend( XMLHrequest.response );
+            }
+        }
+
+        return this;
+    }
+
 
 
     // 13 // 
@@ -138,7 +190,7 @@
             this.nodes[i].style = nafn + ': ' + nytt +';';
         }
         
-        return this
+        return this;
     }
     
     // 14 //
@@ -223,6 +275,27 @@ __('.the-appender').append(
         )
 )
 __('.some-div h2').delete()
+
+// testing 12 //
+
+__().ajax( 
+    {
+        url:'https://serene-island-81305.herokuapp.com/api/200',
+        method: 'POST',
+        
+        
+        success: function(resp) {
+            console.log('SUCCESS');
+            console.log(resp);
+        },
+        fail: function(error) {
+            console.log('FAIL');
+            console.log(error);
+        },
+        beforeSend: function(xhr) {
+            console.log(xhr);
+        }
+});  
 
 // testing 13 //
 __('.the-prepender').css('background-color', 'green');

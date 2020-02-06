@@ -118,9 +118,8 @@
     10 //
     MakeBelieveElement.prototype.prepend = function (elem){
 
-        if (typeof(elem) == "object") {
-            this.nodes[0].insertBefore(elem.parentNode, null)
-            // this.nodes[0].insertBefore(elem.parentNode, this.nodes[0].childNodes[0])
+        if (typeof (elem) == "object") {
+            this.nodes[0].insertBefore(elem.parentNode, this.nodes[0].childNodes[0])
         }
         else {
             this.nodes[0].innerHTML = elem + this.nodes[0].innerHTML

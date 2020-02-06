@@ -81,7 +81,7 @@
         for (var i = 0; i < this.nodes.length; i++){
             this.nodes[i].addEventListener("click", evt)
         }
-    }
+    };
 
     // 8 //
     MakeBelieveElement.prototype.insertText = function(text){
@@ -89,7 +89,7 @@
             this.nodes[i].innerHTML = text
             console.log(this.nodes)
         }
-    }
+    };
 
     // 9 //
     MakeBelieveElement.prototype.append = function(elem){
@@ -102,20 +102,7 @@
         }
     };
 
-    // MakeBelieveElement.prototype.append = function(elem){
-    //     var newElem;
-    //     if (typeof elem == "string"){
-    //         var elemType = elem.match(/<(.*?)>/)[0];
-    //         var stripedHtml = elem.replace(/<[^>]+>/g, '');
-    //         newElem = document.createElement(elemType[1]);
-    //         newElem.appendChild(document.createTextNode(stripedHtml));
-    //     } else{
-    //         newElem = elem.parentNode
-    //     }
-    //     this.nodes[0].appendChild(newElem)
-    // }
-
-    10 //
+    // 10 //
     MakeBelieveElement.prototype.prepend = function (elem){
 
         if (typeof (elem) == "object") {
@@ -125,27 +112,16 @@
             this.nodes[0].innerHTML = elem + this.nodes[0].innerHTML
         }
     };
-    
-    // MakeBelieveElement.prototype.prepend = function(elem){
-    //     var newElem;
-    //     if (typeof elem == "string"){
-    //         var elemType = elem.match(/<(.*?)>/)[1];
-    //         var stripedHtml = elem.replace(/<[^>]+>/g, '');
-    //         newElem = document.createElement(elemType);
-    //         newElem.appendChild(document.createTextNode(stripedHtml));
-    //     } else{
-    //         newElem = elem.parentNode
-    //     }
-    //     this.nodes[0].parentNode.insertBefore(newElem, this.nodes[0])
-        
-    // }
 
     // 11 //
     MakeBelieveElement.prototype.delete = function(){
-        for (var i = 0; i < this.nodes.length; i++){
-            this.nodes[i].remove()
+        var deleteElement = this.nodes[0];
+        console.log("deleting " + deleteElement)
+
+        if (deleteElement){
+            deleteElement.parentNode.removeChild(deleteElement)
         }
-    }
+    };
 
     // 12 //
     MakeBelieveElement.prototype.ajax = function( configuration ) {
@@ -200,7 +176,7 @@
         }
 
         return this;
-    }
+    };
 
 
 
@@ -212,7 +188,7 @@
         }
         
         return this;
-    }
+    };
     
     // 14 //
     MakeBelieveElement.prototype.toggleClass = function(c){
@@ -230,13 +206,13 @@
             this.nodes[0].classList.add(c)
         }
         return this.nodes[0]
-    }
+    };
 
     // 15 //
     MakeBelieveElement.prototype.onSubmit = function (evt){
         console.log(this.nodes[0])
         this.nodes[0].addEventListener("submit", evt)
-    }
+    };
 
     // 16 //
     MakeBelieveElement.prototype.onInput = function (evt){
@@ -244,7 +220,7 @@
             this.nodes[i].addEventListener("input", evt)
         }
         console.log(evt.data)
-    }
+    };
 
 
     function query(cssSelector) {
@@ -324,6 +300,10 @@ __('.the-appender').append(
         )
 )
 __('.some-div h2').delete()
+
+__('#p-to-delete').delete()
+
+__('.div-to-delete').delete()
 
 // testing 12 //
 
